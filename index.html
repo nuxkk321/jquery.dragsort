@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+        .item{display: inline-block;width:32px;height:32px;line-height:32px;text-align: center;margin:3px;cursor: pointer}
+    </style>
+</head>
+<body>
+    <div class="asd" id="box" style="max-width: 700px;height: 900px;margin: auto"></div>
+
+    <div class="t1">
+
+    </div>
+    <div id="t4" class="t2">
+
+    </div>
+    <div class="t3">
+
+    </div>
+</body>
+<script type="text/javascript" src="jquery-1.12.4.min.js" ></script>
+<script type="text/javascript" src="jquery.dragsort.js"></script>
+<script type="text/javascript">
+    $(function(){
+        var e='0123456789abcdef'.split('');
+        var b=$('#box');
+        for(var x in e){
+            for(var z in e){
+                var v1=e[x];
+                var v2=e[z];
+                var fix='f';
+                var color=v1+v2+fix;
+
+                b.append('<div id="i'+v1+v2+'" class="item" style="background-color:#'+color+'">'+v1+v2+'</div>');
+            }
+        }
+
+        $('#box').dragsort({
+            drop_exchange:0,
+            onDrag:function(item){
+//                console.log('drag!',item);
+            },
+            onDragStart:function(item){
+//                console.log('drag start!',item);
+            },
+            onContact:function(item,exitem){
+                console.log("contact! 抓住的元素是",item,"碰到的元素是",exitem);
+            },
+            onExchange:function(item,exitem){
+                console.log("exchange! 抓住的元素是",item,"挤开的元素是",exitem);
+            },
+            onDrop:function(item){
+//                console.log('drop!',item);
+            }
+        });
+    });
+</script>
+
+</html>
